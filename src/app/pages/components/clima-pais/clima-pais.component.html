@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>Bienvenido a la sección de clima por paises</h2>
+  <div class="form-group">
+    <p> Por favor seleccione un país </p>
+    <select [(ngModel)]="ciudadSeleccionada" (change)="getClima($event.target.value)">
+      <option *ngFor="let ciudad of ciudades">
+        {{ciudad}}
+      </option>
+    </select>
+  </div>
+
+  <div class="card mb-5" *ngIf="ciudadSeleccionada && clima">
+    <h2>{{ciudadSeleccionada}}</h2>
+    <h3><span>Humedad: {{clima.main.humidity}}%</span></h3>
+    <h1>{{clima.main.temp | number: '1.0-0' }}°</h1>
+    <div class="sky">
+      <div *ngIf="clima.clouds['all'] < 25" class="sun"></div>
+      <div class="cloud">
+        <div class="circle-small"></div>
+        <div class="circle-tall"></div>
+        <div class="circle-medium"></div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+

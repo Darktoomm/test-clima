@@ -1,0 +1,26 @@
+
+<div class="card" *ngIf="climasDias && info">
+  <h2>{{info.name}}</h2>
+  <h3><span>Humedad: {{climasDias[0].main?.humidity}}%</span></h3>
+  <h1>{{climasDias[0].main.temp | number: '1.0-0' }}°</h1>
+  <div class="sky">
+    <div *ngIf="climasDias[0].clouds['all'] < 25" class="sun"></div>
+    <div class="cloud">
+      <div class="circle-small"></div>
+      <div class="circle-tall"></div>
+      <div class="circle-medium"></div>
+    </div>
+  </div>
+
+  <table>
+    <tr>
+      <td *ngFor="let dia of climasDias |slice:1">{{dia.dt_txt | date: 'EE'}}</td>
+    </tr>
+    <tr>
+      <td *ngFor="let dia of climasDias |slice:1">{{dia.main.temp_min | number: '0.1-1'}}</td>
+    </tr>
+    <tr>
+      <td *ngFor="let dia of climasDias |slice:1">{{dia.main.temp_max | number: '0.1-1'}}</td>
+    </tr>
+  </table>
+</div>
