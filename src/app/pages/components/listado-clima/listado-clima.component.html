@@ -1,5 +1,5 @@
 
-<div class="card" *ngIf="climasDias && info">
+<div class="card" *ngIf="climasDias.length > 0 && info">
   <h2>{{info.name}}</h2>
   <h3><span>Humedad: {{climasDias[0].main?.humidity}}%</span></h3>
   <h1>{{climasDias[0].main.temp | number: '1.0-0' }}°</h1>

@@ -11,8 +11,8 @@ import {ClimaModel} from '../../models/clima-model';
 })
 export class ListadoClimaComponent implements OnInit {
 
-  public climas: ClimaModel[];
-  public climasDias: ClimaModel;
+  public climas: ClimaModel[] = [];
+  public climasDias: ClimaModel[] = [];
   public info = [];
   public ubicacion: string;
 
@@ -35,14 +35,18 @@ export class ListadoClimaComponent implements OnInit {
       this.climas = resp['list'];
       this.info = resp['city'];
       this.getDays();
-      console.log(this.climas);
     });
 
   }
 
   getDays() {
     this.climas.forEach(clima => {
-      if (this.climasDias.length === 0 || this.datePipe.transform(this.climasDias[this.climasDias.length - 1].dt_txt) < this.datePipe.transform(clima.dt_txt)) {
+      if (this.climasDias.length === 0) {
+        return this.climasDias.push(clima);
+      }
+      const fechaA = this.datePipe.transform(this.climasDias[this.climasDias.length - 1].dt_txt);
+      const fechaB = this.datePipe.transform(clima.dt_txt);
+      if (fechaA < fechaB) {
         this.climasDias.push(clima);
       }
     });

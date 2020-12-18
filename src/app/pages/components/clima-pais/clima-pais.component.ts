@@ -12,7 +12,7 @@ export class ClimaPaisComponent implements OnInit {
 
   public ciudades = ['Monaco', 'Nice', 'Cannes', 'Saint-Tropez', 'Marseille', 'Toulouse', 'Bordeaux', 'Biarritz', 'Paris', 'Lyon', 'buenos aires', 'brasilia'];
   public ciudadSeleccionada: string;
-  public clima: ClimaPais[];
+  public clima: ClimaPais;
 
   constructor(private climaService: ClimaService) {
   }
@@ -22,7 +22,6 @@ export class ClimaPaisComponent implements OnInit {
 
   getClima(ciudad) {
     this.climaService.getClimaPaises(ciudad).subscribe(resp => {
-      console.log(resp);
       this.clima = resp;
     });
   }
